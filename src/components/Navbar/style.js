@@ -11,4 +11,7 @@ export const NavbarStyled = styled.nav`
     width: 122.06px;
     height: 21.21px;
   }
+  @media (max-width: 400px) {
+    width: 90%;
+  }
 `;

@@ -39,6 +39,9 @@ export const FormStyled = styled.form`
     line-height: ${typography.headline.heigth};
     font-weight: ${typography.headline.weigth};
   }
+  @media (max-width: 400px) {
+    width: 90%;
+  }
 `;
 export const FormHeader = styled.div`
   display: flex;

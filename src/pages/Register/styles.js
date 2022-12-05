@@ -14,18 +14,22 @@ export const FormStyled = styled.form`
   background-color: ${colors.grey3};
   box-shadow: 0px 4px 40px -10px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
+
+  @media (max-width: 400px) {
+    width: 90%;
+  }
 `;
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  /* margin: 0 auto; */
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding-top: 30px;
+  padding-top: 60px;
   padding-bottom: 20px;
 `;
 

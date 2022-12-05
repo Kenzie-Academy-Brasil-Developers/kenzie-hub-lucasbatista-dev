@@ -22,9 +22,6 @@ export const Navbar = styled.nav`
   height: 100%;
   width: 90%;
   max-width: 1200px;
-  @media (max-width: 700px) {
-    justify-content: center;
-  }
 `;
 export const AsideInfoContainer = styled.aside`
   display: flex;
