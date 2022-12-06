@@ -111,6 +111,10 @@ export const GlobalStyle = createGlobalStyle`
 .input:focus::placeholder{
     color: ${colors.grey0};
 }
+.errorLabel{
+    background-color: transparent;
+    color: ${colors.colorPrimaryFocus};
 
+}
 
 `;

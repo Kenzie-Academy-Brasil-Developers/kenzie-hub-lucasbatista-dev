@@ -73,7 +73,7 @@ export const Register = () => {
           register={register("name")}
           disabled={loading}
         />
-        {errors.name && <p>{errors.name.message}</p>}
+        {errors.name && <p className="errorLabel">{errors.name.message}</p>}
         <Input
           type="email"
           id="email"
@@ -82,7 +82,7 @@ export const Register = () => {
           register={register("email")}
           disabled={loading}
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && <p className="errorLabel">{errors.email.message}</p>}
         <Input
           type="password"
           id="password"
@@ -91,7 +91,9 @@ export const Register = () => {
           register={register("password")}
           disabled={loading}
         />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && (
+          <p className="errorLabel">{errors.password.message}</p>
+        )}
         <Input
           type="password"
           id="passwordConfirmation"
@@ -101,7 +103,7 @@ export const Register = () => {
           disabled={loading}
         />
         {errors.passwordConfirmation && (
-          <p>{errors.passwordConfirmation.message}</p>
+          <p className="errorLabel">{errors.passwordConfirmation.message}</p>
         )}
         <Input
           type="text"
@@ -111,7 +113,7 @@ export const Register = () => {
           register={register("bio")}
           disabled={loading}
         />
-        {errors.bio && <p>{errors.bio.message}</p>}
+        {errors.bio && <p className="errorLabel">{errors.bio.message}</p>}
         <Input
           type="text"
           id="contact"
@@ -120,7 +122,9 @@ export const Register = () => {
           register={register("contact")}
           disabled={loading}
         />
-        {errors.contact && <p>{errors.contact.message}</p>}
+        {errors.contact && (
+          <p className="errorLabel">{errors.contact.message}</p>
+        )}
 
         <Select
           label="Selecionar módulo"
