@@ -64,7 +64,7 @@ export const Login = () => {
           placeholder="Digite aqui seu email"
           register={register("email")}
         />
-        {errors.email && <p>{errors.email.message}</p>}
+        {errors.email && <p className="errorLabel">{errors.email.message}</p>}
         <Input
           type="password"
           id="password"
@@ -72,7 +72,9 @@ export const Login = () => {
           placeholder="Digite aqui sua senha"
           register={register("password")}
         />
-        {errors.password && <p>{errors.password.message}</p>}
+        {errors.password && (
+          <p className="errorLabel">{errors.password.message}</p>
+        )}
         <button className="button disabled">Entrar</button>
 
         <span>Ainda não possui uma conta? </span>
