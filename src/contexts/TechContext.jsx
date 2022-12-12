@@ -19,13 +19,17 @@ export const TechProvider = ({ children }) => {
 
   function openModal(state) {
     state(true);
+    userInformation();
   }
 
   function closeModal(state) {
     state(false);
   }
+  console.log(user);
 
-  useEffect(() => {
+  // useEffect(() => {
+
+  const userInformation = () => {
     const getToken = window.localStorage.getItem("@TOKEN");
     const getUserId = window.localStorage.getItem("@USERID");
 
@@ -44,7 +48,9 @@ export const TechProvider = ({ children }) => {
 
       getUserInformation();
     }
-  }, []);
+  };
+
+  // }, []);
 
   const logout = () => {
     localStorage.clear();
@@ -130,6 +136,7 @@ export const TechProvider = ({ children }) => {
         editTechModalIsOpen,
         submitEditTech,
         tech,
+        userInformation,
       }}
     >
       {children}

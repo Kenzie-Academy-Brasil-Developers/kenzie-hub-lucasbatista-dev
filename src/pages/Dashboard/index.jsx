@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   AsideInfoContainer,
   Header,
@@ -17,6 +17,7 @@ import { SelectAll } from "../../components/SelectAll";
 import { useForm } from "react-hook-form";
 import { BsTrash, BsPencilSquare } from "react-icons/bs";
 import { TechContext } from "../../contexts/TechContext";
+import { UserContext } from "../../contexts/UserContext";
 
 ReactModal.setAppElement("#root");
 
@@ -36,7 +37,14 @@ export const Dashboard = () => {
     editTechModalIsOpen,
     submitEditTech,
     tech,
+    userInformation,
   } = useContext(TechContext);
+  const { autoLogin } = useContext(UserContext);
+
+  useEffect(() => {
+    autoLogin();
+    userInformation();
+  }, []);
 
   const {
     register,

@@ -25,7 +25,7 @@ export const UserProvider = ({ children }) => {
       const { token } = response.data;
       const { id: userId } = response.data.user;
 
-      setUser(userId);
+      // setUser(userId);
       window.localStorage.clear();
       window.localStorage.setItem("@TOKEN", token);
       window.localStorage.setItem("@USERID", userId);
@@ -81,22 +81,18 @@ export const UserProvider = ({ children }) => {
 
   // ----------------------AutoLogin----------------------
 
-  useEffect(() => {
-    async function autoLogin() {
-      const token = window.localStorage.getItem("@TOKEN");
+  async function autoLogin() {
+    const token = window.localStorage.getItem("@TOKEN");
 
-      try {
-        api.defaults.headers.common.authorization = `Bearer ${token}`;
+    try {
+      api.defaults.headers.common.authorization = `Bearer ${token}`;
 
-        const { data } = await api.get("profile");
-        setUserInfo(data.techs);
-      } catch (error) {
-        console.log(error);
-      }
+      const { data } = await api.get("profile");
+      setUserInfo(data.techs);
+    } catch (error) {
+      console.log(error);
     }
-
-    autoLogin();
-  }, []);
+  }
 
   return (
     <UserContext.Provider
@@ -108,6 +104,7 @@ export const UserProvider = ({ children }) => {
         submitLogin,
         submitRegister,
         setUserInfo,
+        autoLogin,
 
         userInfo,
       }}
