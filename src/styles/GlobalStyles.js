@@ -15,7 +15,9 @@ export const GlobalStyle = createGlobalStyle`
     color: white
 
 }
-
+button{
+    cursor: pointer;
+}
 .button{
 
     display: flex;
@@ -64,6 +66,23 @@ export const GlobalStyle = createGlobalStyle`
 .button.grey:hover{
     background-color: ${colors.grey2};
     border: 0.0625rem solid ${colors.grey2};
+
+}
+.button.greySmall{
+    background-color: ${colors.grey3};
+    border: 0.0625rem solid ${colors.grey3};
+    text-decoration: none;
+    
+
+    width: 40.11px;
+    height: 40.11px; 
+    
+    font-size: 28px;
+
+}
+.button.greySmall:hover{
+    background-color: ${colors.grey2};
+    border: 0.0625rem solid ${colors.grey2};  
 
 }
 .button.greyBig{
@@ -117,4 +136,22 @@ export const GlobalStyle = createGlobalStyle`
 
 }
 
+.modal-overlay{
+    background: rgba(18, 18, 20, 0.5);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.modal-content{
+    width: 90%;
+    max-width: 450px;   
+   
+    border-radius: 6px;
+
+}
 `;

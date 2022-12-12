@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Input } from "../../components/Input";
 import { Container, FormHeader, FormStyled } from "./styles";
 import logo from "../../assets/logo.svg";
-import { useForm } from "react-hook-form";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 import { loginSchema } from "./loginSchema";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const Login = () => {
-  const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+  const { submitLogin } = useContext(UserContext);
 
   const {
     register,
@@ -22,33 +21,6 @@ export const Login = () => {
     mode: "onBlur",
     resolver: yupResolver(loginSchema),
   });
-
-  const userLogin = async (formData) => {
-    try {
-      setLoading(true);
-      const response = await api.post("sessions", formData);
-      window.localStorage.clear();
-      window.localStorage.setItem("@TOKEN", response.data.token);
-      window.localStorage.setItem("@USERID", response.data.user.id);
-      toast.success(`Seja bem vindo(a) ${response.data.user.name}`);
-
-      setTimeout(() => {
-        navigate("/dashboard");
-      }, 3000);
-    } catch (error) {
-      if (
-        error.response.data.message == "Incorrect email / password combination"
-      ) {
-        toast.error("E-mail ou senha invalido!");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const submitLogin = (data) => {
-    userLogin(data);
-  };
 
   return (
     <Container>

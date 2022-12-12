@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Input } from "../../components/Input";
 import { Navbar } from "../../components/Navbar";
 import { Select } from "../../components/Select";
 import { Container, FormHeader, FormStyled } from "./styles";
-import { set, useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 import { registerSchema } from "./registerSchema";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
+
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 export const Register = () => {
-  const [loading, setLoading] = useState(false);
+  const { loading, submitRegister } = useContext(UserContext);
 
   const {
     register,
@@ -20,47 +21,12 @@ export const Register = () => {
   } = useForm({
     mode: "onBlur",
     resolver: yupResolver(registerSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      password: "",
-      passwordConfirmation: "",
-      bio: "",
-      contact: "",
-    },
   });
-
-  const userRegister = async (formData) => {
-    try {
-      setLoading(true);
-      const response = await api.post("users", formData);
-
-      toast.success("Usuário cadastrado com sucesso");
-    } catch (error) {
-      if (error.response.data.message == "Email already exists") {
-        toast.error("E-mail já cadastrado");
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const submit = async (data) => {
-    await userRegister(data);
-    reset({
-      name: "",
-      email: "",
-      password: "",
-      passwordConfirmation: "",
-      bio: "",
-      contact: "",
-    });
-  };
 
   return (
     <Container>
       <Navbar btnValue="Voltar" />
-      <FormStyled noValidate onSubmit={handleSubmit(submit)}>
+      <FormStyled noValidate onSubmit={handleSubmit(submitRegister)}>
         <FormHeader>
           <h2>Crie sua conta</h2>
           <span>Rapido e grátis, vamos nessa</span>
