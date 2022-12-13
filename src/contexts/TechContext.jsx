@@ -25,7 +25,6 @@ export const TechProvider = ({ children }) => {
   function closeModal(state) {
     state(false);
   }
-  console.log(user);
 
   // useEffect(() => {
 
@@ -38,14 +37,15 @@ export const TechProvider = ({ children }) => {
     } else {
       const getUserInformation = async () => {
         try {
-          const response = api.get(`users/${getUserId}`);
-          const userData = await response;
+          const response = await api.get(`users/${getUserId}`);
+          const userData = response;
           setUser(userData.data);
         } catch (error) {
           console.log(error);
+          localStorage.clear();
+          navigate("/");
         }
       };
-
       getUserInformation();
     }
   };

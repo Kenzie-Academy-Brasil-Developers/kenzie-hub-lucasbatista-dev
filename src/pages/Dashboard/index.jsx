@@ -18,6 +18,7 @@ import { useForm } from "react-hook-form";
 import { BsTrash, BsPencilSquare } from "react-icons/bs";
 import { TechContext } from "../../contexts/TechContext";
 import { UserContext } from "../../contexts/UserContext";
+import { CardTech } from "../../components/CardTech";
 
 ReactModal.setAppElement("#root");
 
@@ -117,28 +118,13 @@ export const Dashboard = () => {
         <UserTechs>
           <ul>
             {userInfo.map((item) => (
-              <li
-                onClick={() => {
-                  getTech(item.id);
-                }}
-                key={item.id}
+              <CardTech
                 id={item.id}
-              >
-                <h2 onClick={() => openModal(setEditTechModalIsOpen)}>
-                  {item.title}
-                </h2>
-                <div>
-                  <p>{item.status}</p>
-                  <div>
-                    <button onClick={() => techDelete(item.id)}>
-                      <BsTrash />
-                    </button>
-                    <button onClick={() => openModal(setEditTechModalIsOpen)}>
-                      <BsPencilSquare />
-                    </button>
-                  </div>
-                </div>
-              </li>
+                title={item.title}
+                status={item.status}
+                trashIcon={<BsTrash />}
+                pencilIcon={<BsPencilSquare />}
+              />
             ))}
             <ReactModal
               isOpen={editTechModalIsOpen}

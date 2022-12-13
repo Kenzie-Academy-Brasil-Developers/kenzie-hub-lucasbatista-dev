@@ -123,6 +123,7 @@ export const UserTechs = styled.div`
     font-size: ${typography.title1.size};
     font-weight: ${typography.title1.weigth};
     line-height: ${typography.title1.heigth};
+    cursor: pointer;
   }
 `;
 export const Modal = styled.div`
