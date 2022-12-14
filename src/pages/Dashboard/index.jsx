@@ -119,6 +119,7 @@ export const Dashboard = () => {
           <ul>
             {userInfo.map((item) => (
               <CardTech
+                key={item.id}
                 id={item.id}
                 title={item.title}
                 status={item.status}

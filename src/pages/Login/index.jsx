@@ -8,9 +8,14 @@ import { UserContext } from "../../contexts/UserContext";
 import { loginSchema } from "./loginSchema";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useEffect } from "react";
 
 export const Login = () => {
-  const { submitLogin } = useContext(UserContext);
+  const { submitLogin, autoLogin } = useContext(UserContext);
+
+  useEffect(() => {
+    autoLogin();
+  }, []);
 
   const {
     register,
